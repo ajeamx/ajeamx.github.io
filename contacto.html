@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto — AJEA</title>
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="icon" type="image/png" href="logoAJEA.png">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -13,21 +14,22 @@
     <div>
       <div class="mobile-bar">
         <div class="brand-mark">
-          <span class="dot"></span>
-          <div><span class="name">AJEA</span><span class="sub">Estrategias Ambientales</span></div>
+          <img src="logoAJEA.png" alt="AJEA" class="logo-img">
+          <div>
+            <span class="sub">Estrategias Jurídicas y Estrategias Ambientales</span>
+          </div>
         </div>
         <button class="menu-btn" onclick="document.getElementById('sidenav').classList.toggle('open')">Menú</button>
       </div>
       <div class="nav-links">
-        <a href="index.html"><span class="idx">00</span> Inicio</a>
-        <a href="servicios.html"><span class="idx">01</span> Servicios</a>
-        <a href="nosotros.html"><span class="idx">02</span> Nosotros</a>
-        <a href="contacto.html" class="active"><span class="idx">03</span> Contacto</a>
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="contacto.html" class="active">Contacto</a>
       </div>
     </div>
     <div class="sidenav-footer">
       <span class="motto">"Honrarás a la naturaleza de la que formas parte"</span>
-      Ciudad de México<br>Fundada en 2019
+      Ciudad de México
     </div>
   </nav>
 
@@ -61,10 +63,71 @@
           <div class="value" style="font-size:1.1rem;">Ciudad de México</div>
         </div>
 
+        <!-- Formulario de contacto -->
+        <div class="contact-form">
+          <p class="form-title">Envíenos un mensaje</p>
+          <p class="form-subtitle">Complete el formulario y nos pondremos en contacto con usted a la brevedad.</p>
+
+          <form action="https://formspree.io/f/ajea.consultores@gmail.com" method="POST" novalidate>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan García" required>
+              </div>
+              <div class="form-group">
+                <label for="empresa">Empresa / Organización</label>
+                <input type="text" id="empresa" name="empresa" placeholder="Opcional">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+              </div>
+              <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="55 0000 0000">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group full">
+                <label for="servicio">Servicio de interés</label>
+                <select id="servicio" name="servicio">
+                  <option value="" disabled selected>Seleccione una opción</option>
+                  <option value="impacto-ambiental">Elaboración de estudios de Impacto Ambiental y Riesgo</option>
+                  <option value="supervision">Supervisión de cumplimiento de condicionantes</option>
+                  <option value="residuos">Trámites en materia de Residuos</option>
+                  <option value="informacion">Información Ambiental</option>
+                  <option value="mau">Manifestación Ambiental Única</option>
+                  <option value="procedimientos">Seguimiento a procedimientos administrativos</option>
+                  <option value="hidrica">Gestión de autorizaciones en materia hídrica</option>
+                  <option value="urbana">Gestión de documentos en materia Urbana</option>
+                  <option value="otro">Otro / Consulta general</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group full">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" placeholder="Describa brevemente su proyecto o consulta..." required></textarea>
+              </div>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn">Enviar mensaje</button>
+            </div>
+
+          </form>
+        </div>
+
       </section>
 
       <footer class="page-footer">
-        © 2025 AJEA — Asistencia Jurídica y Estrategias Ambientales. Ciudad de México.
+        © 2025 AJEA — Estrategias Jurídicas y Estrategias Ambientales. Ciudad de México.
       </footer>
 
     </div>
