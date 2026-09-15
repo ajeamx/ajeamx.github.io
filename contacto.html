@@ -1,138 +1,237 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contacto — AJEA</title>
-<link rel="icon" type="image/png" href="logoAJEA.png">
-<link rel="stylesheet" href="styles.css?v=3">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto — AJEA | Asistencia Jurídica y Estrategias Ambientales</title>
+  <meta
+    name="description"
+    content="Contacta a AJEA para tu proyecto ambiental en la Ciudad de México: teléfonos, correos y formulario de contacto directo."
+  />
+  <link rel="icon" type="image/png" href="assets/img/logoAJEA.png" />
+  <meta property="og:title" content="Contacto — AJEA" />
+  <meta property="og:description" content="Escríbenos o llámanos para platicar sobre la estrategia ambiental de tu proyecto." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/logoAJEA.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
 
-<div class="shell">
-  <nav class="sidenav" id="sidenav">
-    <div>
-      <div class="mobile-bar">
-        <div class="brand-mark">
-          <img src="logoAJEA.png" alt="AJEA" class="logo-img">
-          <div>
-            <span class="sub">Estrategias Jurídicas y Estrategias Ambientales</span>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="logo">
+        <img
+          class="logo__img"
+          src="assets/img/logoAJEA.png"
+          alt="AJEA — Asistencia Jurídica y Estrategias Ambientales"
+          width="125"
+          height="140"
+        />
+        <span class="logo__text">
+          <span class="logo__title">AJEA</span>
+          <span class="logo__subtitle">Asistencia Jurídica y Estrategias Ambientales</span>
+        </span>
+      </a>
+
+      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú de navegación">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
+
+      <nav class="nav" id="nav-menu" aria-label="Navegación principal">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Inicio</a></li>
+          <li><a class="nav__link" href="servicios.html">Servicios</a></li>
+          <li><a class="nav__link" href="contacto.html">Contacto</a></li>
+          <li class="nav__cta"><a class="btn btn--accent btn--block" href="contacto.html">Solicita tu asesoría</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ========================= ENCABEZADO ========================= -->
+    <section class="page-header">
+      <div class="container">
+        <span class="page-header__eyebrow">Contacto</span>
+        <h1>Cuéntenos sobre su proyecto</h1>
+        <p class="lead">
+          Escríbanos o llámenos directamente, o utilice el formulario para describir su proyecto: le
+          responderemos con los siguientes pasos para su estrategia ambiental.
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================== CONTACTO ============================ -->
+    <section class="section">
+      <div class="container contact-grid">
+
+        <!-- Información directa -->
+        <div class="reveal">
+          <h2>Información directa</h2>
+          <p class="lead" style="margin-top: var(--sp-1);">Tres vías de contacto para atenderle sin intermediarios.</p>
+
+          <div class="contact-info__list">
+            <div class="contact-info__item">
+              <span class="contact-info__icon" aria-hidden="true">
+                <img src="assets/img/ic_phone.png" alt="" width="18" height="18" loading="lazy" />
+              </span>
+              <div>
+                <h3>Teléfonos</h3>
+                <a href="tel:+525243779423">55 4377 9423</a>
+                <a href="tel:+525248174586">55 4817 4586</a>
+                <a href="tel:+525225805321">55 2580 5321</a>
+              </div>
+            </div>
+
+            <div class="contact-info__item">
+              <span class="contact-info__icon" aria-hidden="true">
+                <img src="assets/img/ic_mail.png" alt="" width="18" height="18" loading="lazy" />
+              </span>
+              <div>
+                <h3>Correos electrónicos</h3>
+                <a href="mailto:ajea.consultores@gmail.com">ajea.consultores@gmail.com</a>
+                <a href="mailto:bmh.ajeaconsultores@gmail.com">bmh.ajeaconsultores@gmail.com</a>
+                <a href="mailto:rjj.ajeaconsultores@gmail.com">rjj.ajeaconsultores@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-info__item">
+              <span class="contact-info__icon" aria-hidden="true">
+                <img src="assets/img/ic_loc.png" alt="" width="18" height="18" loading="lazy" />
+              </span>
+              <div>
+                <h3>Zona de trabajo</h3>
+                <span>Ciudad de México — trámites y gestiones ante autoridades locales y federales.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="img-placeholder img-placeholder--wide" style="margin-top: var(--sp-3);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9.5 12 3l9 6.5"/>
+              <path d="M5 9v11h14V9"/>
+              <path d="M9 20v-6h6v6"/>
+            </svg>
+            <span>Espacio para fotografía — oficina, equipo en campo o mapa de cobertura</span>
           </div>
         </div>
-        <button class="menu-btn" onclick="document.getElementById('sidenav').classList.toggle('open')">Menú</button>
-      </div>
-      <div class="nav-links">
-        <a href="index.html">Inicio</a>
-        <a href="servicios.html">Servicios</a>
-        <a href="contacto.html" class="active">Contacto</a>
-      </div>
-    </div>
-    <div class="sidenav-footer">
-      <span class="motto">"Honrarás a la naturaleza de la que formas parte"</span>
-      Ciudad de México
-    </div>
-  </nav>
 
-  <main class="main">
-    <div class="container">
+        <!-- Formulario -->
+        <div class="reveal">
+          <!--
+            Formspree conectado: https://formspree.io/f/xbdnzvey
+            El primer envío real (no de prueba) llega como un correo de
+            confirmación de Formspree — hay que abrirlo y confirmar la
+            dirección para que el formulario quede activado.
+          -->
+          <form
+            id="contact-form"
+            class="contact-form"
+            action="https://formspree.io/f/xbdnzvey"
+            method="POST"
+            novalidate
+          >
+            <h2 style="font-size: 1.3rem; margin-bottom: var(--sp-3);">Formulario de contacto</h2>
 
-      <section class="hero" style="padding:100px 0 40px;">
-        <div class="eyebrow">Contacto</div>
-        <h1 style="max-width:20ch;">Hagamos de su proyecto un caso de éxito.</h1>
-        <p class="lead">Nos complacerá presentar con mayor detalle los objetivos para desarrollar, de forma conjunta, una estrategia ambiental a la medida de su proyecto.</p>
-      </section>
+            <input type="hidden" name="_subject" value="Nuevo mensaje desde el sitio web de AJEA" />
 
-      <section class="section" style="border-bottom:none;padding-top:0;">
-
-        <div class="contact-block">
-          <div class="label">Teléfonos</div>
-          <div class="value">55 4377 9423</div>
-          <div class="value">55 4817 4586</div>
-          <div class="value">55 2580 5321</div>
-        </div>
-
-        <div class="contact-block">
-          <div class="label">Correos electrónicos</div>
-          <div class="value" style="font-size:1.05rem;">bmh.ajeaconsultores@gmail.com</div>
-          <div class="value" style="font-size:1.05rem;">rjj.ajeaconsultores@gmail.com</div>
-          <div class="value" style="font-size:1.05rem;">ajea.consultores@gmail.com</div>
-        </div>
-
-        <div class="contact-block">
-          <div class="label">Ubicación</div>
-          <div class="value" style="font-size:1.1rem;">Ciudad de México</div>
-        </div>
-
-        <!-- Formulario de contacto -->
-        <div class="contact-form">
-          <p class="form-title">Envíenos un mensaje</p>
-          <p class="form-subtitle">Complete el formulario y nos pondremos en contacto con usted a la brevedad.</p>
-
-          <form action="https://formspree.io/f/ajea.consultores@gmail.com" method="POST" novalidate>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="nombre">Nombre completo</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan García" required>
+            <div class="form-row form-row--2">
+              <div class="form-field">
+                <label class="form-label" for="nombre">Nombre completo <span class="req">*</span></label>
+                <input class="form-input" type="text" id="nombre" name="nombre" autocomplete="name" required />
               </div>
-              <div class="form-group">
-                <label for="empresa">Empresa / Organización</label>
-                <input type="text" id="empresa" name="empresa" placeholder="Opcional">
+              <div class="form-field">
+                <label class="form-label" for="correo">Correo electrónico <span class="req">*</span></label>
+                <input class="form-input" type="email" id="correo" name="correo" autocomplete="email" required />
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+            <div class="form-row form-row--2">
+              <div class="form-field">
+                <label class="form-label" for="telefono">Teléfono</label>
+                <input class="form-input" type="tel" id="telefono" name="telefono" autocomplete="tel" />
               </div>
-              <div class="form-group">
-                <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" name="telefono" placeholder="55 0000 0000">
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group full">
-                <label for="servicio">Servicio de interés</label>
-                <select id="servicio" name="servicio">
-                  <option value="" disabled selected>Seleccione una opción</option>
-                  <option value="impacto-ambiental">Elaboración de estudios de Impacto Ambiental y Riesgo</option>
-                  <option value="supervision">Supervisión de cumplimiento de condicionantes</option>
-                  <option value="residuos">Trámites en materia de Residuos</option>
-                  <option value="informacion">Información Ambiental</option>
-                  <option value="mau">Manifestación Ambiental Única</option>
-                  <option value="procedimientos">Seguimiento a procedimientos administrativos</option>
-                  <option value="hidrica">Gestión de autorizaciones en materia hídrica</option>
-                  <option value="urbana">Gestión de documentos en materia Urbana</option>
-                  <option value="otro">Otro / Consulta general</option>
+              <div class="form-field">
+                <label class="form-label" for="servicio">Servicio de interés</label>
+                <select class="form-select" id="servicio" name="servicio">
+                  <option value="">Seleccione una opción</option>
+                  <option value="Impacto ambiental y riesgo">Impacto ambiental y riesgo</option>
+                  <option value="Supervisión de condicionantes">Supervisión de condicionantes</option>
+                  <option value="Trámites en materia de residuos">Trámites en materia de residuos</option>
+                  <option value="Información ambiental">Información ambiental</option>
+                  <option value="Arbolado y áreas verdes">Arbolado y áreas verdes</option>
+                  <option value="Manifestación Ambiental Única">Manifestación Ambiental Única</option>
+                  <option value="Procedimientos administrativos">Procedimientos administrativos</option>
+                  <option value="Otro">Otro</option>
                 </select>
               </div>
             </div>
 
             <div class="form-row">
-              <div class="form-group full">
-                <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" placeholder="Describa brevemente su proyecto o consulta..." required></textarea>
+              <div class="form-field">
+                <label class="form-label" for="mensaje">Cuéntenos sobre su proyecto <span class="req">*</span></label>
+                <textarea class="form-textarea" id="mensaje" name="mensaje" required></textarea>
               </div>
             </div>
 
-            <div class="form-submit">
-              <button type="submit" class="btn">Enviar mensaje</button>
-            </div>
-
+            <button class="btn btn--accent btn--block" type="submit">Enviar mensaje</button>
+            <p class="form-note">Los campos marcados con * son obligatorios. Respondemos en un plazo de 1 a 2 días hábiles.</p>
+            <div id="form-status" class="form-status" aria-live="polite"></div>
           </form>
         </div>
-
-      </section>
-
-      <footer class="page-footer">
-        © 2025 AJEA — Estrategias Jurídicas y Estrategias Ambientales. Ciudad de México.
-      </footer>
-
-    </div>
+      </div>
+    </section>
   </main>
-</div>
 
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="assets/img/logoAJEA.png" alt="" width="34" height="38" loading="lazy" />
+          <div class="footer__brand-text">
+            <strong>AJEA</strong>
+            <p>
+              Asistencia Jurídica y Estrategias Ambientales. Estrategias de cumplimiento ambiental para proyectos,
+              obras y actividades económicas en la Ciudad de México.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer__heading">Navegación</h3>
+          <nav class="footer__list" aria-label="Enlaces del pie de página">
+            <a href="index.html">Inicio</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="contacto.html">Contacto</a>
+          </nav>
+        </div>
+
+        <div>
+          <h3 class="footer__heading">Contacto directo</h3>
+          <div class="footer__list">
+            <a href="mailto:ajea.consultores@gmail.com">ajea.consultores@gmail.com</a>
+            <a href="tel:+525243779423">55 4377 9423</a>
+            <a href="tel:+525248174586">55 4817 4586</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2026 AJEA — Asistencia Jurídica y Estrategias Ambientales. Todos los derechos reservados.</span>
+        <span>Ciudad de México</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

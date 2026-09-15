@@ -1,0 +1,1534 @@
+/* =========================================================================
+   AJEA — Asistencia Jurídica y Estrategias Ambientales
+   Hoja de estilos principal
+   Sistema: variables CSS, mobile-first, CSS Grid para layout,
+   Flexbox para alineación interna, BEM para nombrado de clases.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. Variables globales (design tokens)
+   ------------------------------------------------------------------------- */
+:root {
+  /* Color — azul corporativo (institucional/jurídico) + verde de acento (ambiental) */
+  --color-primary: #1b3a5c;
+  --color-primary-dark: #122841;
+  --color-primary-light: #2f5680;
+  --color-accent: #4c7c5b;
+  --color-accent-dark: #395f46;
+  --color-accent-light: #e4efe7;
+
+  --color-bg: #f5f6f4;
+  --color-surface: #ffffff;
+  --color-text: #1e2a33;
+  --color-text-muted: #55636b;
+  --color-border: #dce1de;
+  --color-border-strong: #b9c2bd;
+
+  /* Tipografía */
+  --font-heading: "Spectral", "Iowan Old Style", Georgia, serif;
+  --font-body: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --fs-h1: clamp(2rem, 1.35rem + 3vw, 3.4rem);
+  --fs-h2: clamp(1.5rem, 1.15rem + 1.5vw, 2.25rem);
+  --fs-h3: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+  --fs-lead: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  /* Espaciado — escala base 8px */
+  --sp-1: 0.5rem;   /* 8px */
+  --sp-2: 1rem;     /* 16px */
+  --sp-3: 1.5rem;   /* 24px */
+  --sp-4: 2rem;     /* 32px */
+  --sp-5: 3rem;     /* 48px */
+  --sp-6: 4rem;     /* 64px */
+  --sp-7: 6rem;     /* 96px */
+
+  /* Otros */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --shadow-soft: 0 1px 2px rgba(18, 40, 65, 0.06), 0 8px 24px -12px rgba(18, 40, 65, 0.18);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --container-w: 1180px;
+}
+
+/* -------------------------------------------------------------------------
+   2. Reset básico
+   ------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+h1, h2, h3, h4, p,
+figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+img, picture, svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none; /* evita los bullets nativos: sin esto, cada <li> mostraba
+                        su punto de lista por defecto ADEMÁS del punto/número
+                        personalizado que ya dibujan .nav__list y .accordion__list,
+                        duplicando los marcadores visuales. */
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+/* -------------------------------------------------------------------------
+   3. Base
+   ------------------------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-primary-dark);
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); font-weight: 500; }
+
+p {
+  max-width: 62ch;
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  color: var(--color-text-muted);
+  max-width: 58ch;
+}
+
+/* Foco visible accesible en toda la página */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Reduce el movimiento si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   4. Utilidades de layout
+   ------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: var(--sp-3);
+}
+
+.section {
+  padding-block: var(--sp-6);
+}
+
+.section--alt {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section__header {
+  max-width: 46rem;
+  margin-bottom: var(--sp-5);
+}
+
+.section__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: var(--fs-small);
+  color: var(--color-accent-dark);
+  font-weight: 600;
+  margin-bottom: var(--sp-2);
+}
+
+.section__kicker::before {
+  content: "";
+  width: 18px;
+  height: 2px;
+  background: var(--color-accent);
+  display: inline-block;
+}
+
+/* Envoltorio centrado para un botón suelto al final de una sección.
+   Deliberadamente un <div>, no un <p>: la regla global `p { max-width: 62ch }`
+   dejaría la caja angosta y pegada a la izquierda en vez de centrada. */
+.section-cta {
+  margin-top: var(--sp-4);
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--sp-1) var(--sp-2);
+  z-index: 200;
+}
+
+.skip-link:focus {
+  left: var(--sp-2);
+  top: var(--sp-2);
+}
+
+/* -------------------------------------------------------------------------
+   5. Botones
+   ------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-1);
+  padding: 0.85em 1.6em;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: var(--fs-body);
+  line-height: 1.2;
+  transition: transform 200ms var(--ease-out), background-color 200ms var(--ease-out), color 200ms var(--ease-out), border-color 200ms var(--ease-out);
+  border: 1.5px solid transparent;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn--accent {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.btn--accent:hover {
+  background: var(--color-accent-dark);
+  transform: translateY(-1px);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-border-strong);
+}
+
+.btn--outline:hover {
+  border-color: var(--color-primary);
+  background: rgba(27, 58, 92, 0.05);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* -------------------------------------------------------------------------
+   6. Encabezado / navegación
+   ------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245, 246, 244, 0.92);
+  backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--sp-2);
+  min-height: 64px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.logo__img {
+  width: 38px;
+  height: 42px;
+}
+
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo__title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--color-primary-dark);
+  letter-spacing: 0.02em;
+}
+
+.logo__subtitle {
+  font-size: 0.68rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.01em;
+}
+
+.nav__toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+}
+
+.nav__toggle-bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--color-primary-dark);
+  border-radius: 1px;
+  transition: transform 250ms var(--ease-out), opacity 250ms var(--ease-out);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Menú desplegable móvil: se ancla justo debajo del header (top: 100%) en vez
+   de usar un alto de header fijo en píxeles — así nunca queda desalineado si
+   el header crece (p. ej. logo + nombre en dos líneas en pantallas angostas). */
+.nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  max-height: 80vh;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out), visibility 220ms;
+}
+
+.nav.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-3);
+  gap: var(--sp-1);
+}
+
+.nav__link {
+  display: block;
+  padding: var(--sp-2) var(--sp-1);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--color-primary-dark);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav__link.is-active {
+  color: var(--color-accent-dark);
+}
+
+.nav__cta {
+  margin-top: var(--sp-2);
+}
+
+@media (min-width: 860px) {
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav {
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    gap: var(--sp-4);
+  }
+
+  .nav__link {
+    padding: 0.35rem 0.1rem;
+    font-size: var(--fs-body);
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav__link:hover,
+  .nav__link.is-active {
+    border-bottom-color: var(--color-accent);
+  }
+
+  .nav__cta {
+    margin-top: 0;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   7. Hero
+   ------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  padding-block: var(--sp-7) var(--sp-6);
+  overflow: hidden;
+  color: #fff;
+  isolation: isolate; /* mantiene z-index del contenido por encima del fondo sin tocar el resto de la página */
+}
+
+/* Capa de fondo del hero: imagen o video institucional.
+   Mientras no se agregue un asset real, .hero__media-fallback dibuja un
+   degradado + patrón de líneas (evoca planos/curvas de nivel, acorde al
+   giro ambiental) para que la sección luzca terminada desde ya. */
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__media-fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.05) 0px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 64px
+    ),
+    linear-gradient(155deg, var(--color-primary-dark) 0%, var(--color-primary) 55%, var(--color-accent-dark) 100%);
+}
+
+/* Si se agrega <img> o <video> real dentro de .hero__media, deben llevar
+   esta clase para cubrir el contenedor igual que el fallback. */
+.hero__media-img,
+.hero__media-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Alpha calculado para garantizar contraste AA (>= 4.5:1) del texto blanco
+   incluso en el fotograma más claro posible del video (p. ej. cielo
+   brumoso), no solo contra el degradado de respaldo. */
+.hero__media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(18, 40, 65, 0.68) 0%, rgba(18, 40, 65, 0.85) 100%);
+}
+
+.hero__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--sp-5);
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .hero__grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--sp-6);
+  }
+}
+
+.hero__content {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: hero-rise 700ms var(--ease-out) 120ms forwards;
+}
+
+/* Remate visual PRINCIPAL del hero: logo + nombre, el elemento más grande
+   y lo primero que se lee. El titular y la descripción quedan como
+   contenido secundario, más pequeños y agrupados justo debajo. */
+.hero__brandmark {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-5);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.hero__brandmark-logo {
+  width: clamp(64px, 5vw + 40px, 100px);
+  height: auto;
+  flex-shrink: 0;
+}
+
+.hero__brandmark-name {
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 1.8rem + 4vw, 5rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #fff;
+  line-height: 0.95;
+  display: block;
+}
+
+.hero__brandmark-tagline {
+  display: block;
+  font-size: clamp(0.85rem, 0.4vw + 0.75rem, 1rem);
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: 0.4rem;
+}
+
+/* Contenido secundario: titular (a modo de eslogan) y descripción,
+   deliberadamente más discretos que el remate visual de arriba. */
+.hero__title {
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
+  font-weight: 500;
+  margin-bottom: var(--sp-2);
+  color: #fff;
+  max-width: 34ch;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: #a8d1b7;
+}
+
+.hero__subtitle {
+  font-size: 0.95rem;
+  margin-bottom: var(--sp-4);
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 50ch;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+/* Botón "outline" con contraste correcto sobre el fondo oscuro del hero */
+.hero .btn--outline {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.hero .btn--outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #fff;
+}
+
+@keyframes hero-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__content {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* Índice numerado tipo "expediente" — panel del hero */
+.folio {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  padding: var(--sp-3);
+  opacity: 0;
+  transform: translateY(18px);
+  animation: hero-rise 800ms var(--ease-out) 260ms forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folio {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+.folio__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: var(--sp-2);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--sp-1);
+}
+
+.folio__title h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.folio__title span {
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+}
+
+.folio__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.folio__item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  padding-block: 0.6rem;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.folio__item:last-child {
+  border-bottom: none;
+}
+
+.folio__number {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--color-accent-dark);
+  font-weight: 600;
+  min-width: 1.6rem;
+}
+
+.folio__label {
+  font-size: 0.92rem;
+  color: var(--color-text);
+}
+
+/* -------------------------------------------------------------------------
+   8b. Placeholder de imagen reutilizable
+   ------------------------------------------------------------------------- */
+/* Marco punteado para reservar espacio a fotografías reales. Sustituir el
+   <div class="img-placeholder"> por un <img> con la ruta definitiva cuando
+   se tenga el material fotográfico; el tamaño del hueco ya queda definido
+   por los modificadores de tamaño (--square, --wide, --tall). */
+.img-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1.5px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(76, 124, 91, 0.06) 0px,
+    rgba(76, 124, 91, 0.06) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--sp-3);
+  width: 100%;
+}
+
+.img-placeholder svg {
+  width: 30px;
+  height: 30px;
+  opacity: 0.55;
+}
+
+.img-placeholder span {
+  font-size: var(--fs-small);
+  max-width: 24ch;
+  line-height: 1.4;
+}
+
+.img-placeholder--wide {
+  min-height: 220px;
+}
+
+.img-placeholder--square {
+  aspect-ratio: 1 / 1;
+  min-height: 0;
+}
+
+.img-placeholder--icon {
+  min-height: 0;
+  padding: var(--sp-1);
+  border-radius: var(--radius-sm);
+}
+
+.img-placeholder--icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Ícono cuadrado minimalista ya resuelto (no placeholder): fondo suave +
+   esquinas redondeadas, usado en tarjetas de servicio (Inicio) y en el
+   panel de cada acordeón (Servicios). Los archivos vienen de
+   assets/img/servicioN.png (líneas negras sobre fondo transparente). */
+.icon-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-light);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-1);
+}
+
+.icon-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Bloque de comparación A/B para probar un video contra una fotografía en
+   el mismo espacio, antes de decidir cuál se queda de forma definitiva. */
+.media-compare {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  width: 100%;
+}
+
+.media-compare__option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.media-compare__label {
+  align-self: flex-start;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-accent-dark);
+  background: var(--color-accent-light);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.media-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-primary-dark);
+}
+
+.media-frame__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* -------------------------------------------------------------------------
+   9. Quiénes somos / valores
+   ------------------------------------------------------------------------- */
+.about-grid {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+@media (min-width: 860px) {
+  .about-grid {
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--sp-6);
+  }
+}
+
+.about-grid__text p + p {
+  margin-top: var(--sp-2);
+}
+
+.value-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.value-list__item {
+  display: flex;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+
+.value-list__item strong {
+  display: block;
+  color: var(--color-primary-dark);
+  font-size: 0.95rem;
+}
+
+.value-list__item span {
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+}
+
+/* Misión / visión */
+.mv-grid {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+@media (min-width: 720px) {
+  .mv-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.mv-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4);
+}
+
+.mv-card h3 {
+  color: var(--color-accent-dark);
+  margin-bottom: var(--sp-2);
+}
+
+/* -------------------------------------------------------------------------
+   10. Tarjetas de servicio (vista previa, no interactiva)
+   ------------------------------------------------------------------------- */
+.service-grid {
+  display: grid;
+  gap: var(--sp-3);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .service-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.service-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  transition: border-color 220ms var(--ease-out), transform 220ms var(--ease-out);
+}
+
+.service-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+}
+
+.service-card__icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--sp-1);
+}
+
+.service-card__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+.service-card__desc {
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+}
+
+/* Reveal puntual controlado por IntersectionObserver (js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   10b. Tarjetas horizontales clickeables (Inicio)
+   ------------------------------------------------------------------------- */
+/* Toda la tarjeta es un <a> hacia servicios.html: ícono grande a un costado,
+   nombre + descripción corta al lado. */
+.service-tile-grid {
+  display: grid;
+  gap: var(--sp-3);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .service-tile-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .service-tile-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.service-tile {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-3);
+  transition: border-color 220ms var(--ease-out), transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+}
+
+.service-tile:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-soft);
+}
+
+.service-tile__icon {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.service-tile__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.service-tile__title {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--color-primary-dark);
+}
+
+.service-tile__desc {
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   11. Acordeón de servicios (servicios.html)
+   ------------------------------------------------------------------------- */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.accordion__item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.accordion__header {
+  margin: 0;
+}
+
+.accordion__button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  text-align: left;
+}
+
+/* Ícono cuadrado de la categoría, visible siempre (reemplaza el número
+   que tenía antes el acordeón). */
+.accordion__thumb {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.accordion__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+/* Cerrado, el botón muestra ícono + título. La descripción vive dentro
+   del panel y solo se ve al desplegar (ver más abajo). */
+.accordion__title {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--color-primary-dark);
+}
+
+.accordion__icon {
+  width: 22px;
+  height: 22px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.accordion__icon::before,
+.accordion__icon::after {
+  content: "";
+  position: absolute;
+  background: var(--color-primary);
+  border-radius: 1px;
+  transition: transform 280ms var(--ease-out);
+  top: 50%;
+  left: 50%;
+}
+
+.accordion__icon::before {
+  width: 14px;
+  height: 2px;
+  transform: translate(-50%, -50%);
+}
+
+.accordion__icon::after {
+  width: 2px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+}
+
+.accordion__button[aria-expanded="true"] .accordion__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg) scaleY(0);
+}
+
+.accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 380ms var(--ease-out);
+}
+
+.accordion__panel-inner {
+  padding: 0 var(--sp-3) var(--sp-3) var(--sp-3);
+}
+
+/* Descripción del panel: solo visible cuando el acordeón está desplegado
+   (el ícono ya se ve siempre arriba, en el botón). */
+.accordion__desc {
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  max-width: 56ch;
+  padding-bottom: var(--sp-2);
+  margin-bottom: var(--sp-2);
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.accordion__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: calc(48px + var(--sp-2));
+}
+
+.accordion__list li {
+  position: relative;
+  padding-left: var(--sp-3);
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.accordion__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  border-radius: 50%;
+}
+
+/* Sub-servicios pendientes de confirmar (ver comentarios en servicios.html):
+   quedan comentados en el HTML, no se muestran. Esta clase queda por si se
+   prefiere ocultarlos en vez de comentarlos, sin perder el estilo base. */
+.accordion__list li.is-pending {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .accordion__list {
+    padding-left: 0;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   12. Equipo (nosotros.html)
+   ------------------------------------------------------------------------- */
+.team-grid {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+@media (min-width: 720px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.team-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.team-card__top {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* Marco cuadrado para la fotografía de cada integrante. Mientras no se
+   agregue la foto real, muestra las iniciales sobre el patrón punteado. */
+.team-card__photo {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.team-card__photo-initials {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--color-accent-dark);
+  opacity: 0.7;
+}
+
+.team-card__name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+.team-card__role {
+  font-size: var(--fs-small);
+  color: var(--color-accent-dark);
+  font-weight: 600;
+}
+
+.team-card__bio {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   13. Banda CTA
+   ------------------------------------------------------------------------- */
+.cta-band {
+  background: var(--color-accent);
+  color: #fff;
+  padding-block: var(--sp-5);
+}
+
+.cta-band__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  align-items: flex-start;
+}
+
+@media (min-width: 780px) {
+  .cta-band__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.cta-band h2 {
+  color: #fff;
+}
+
+.cta-band p {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.cta-band .btn--outline {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.cta-band .btn--outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #fff;
+}
+
+/* -------------------------------------------------------------------------
+   14. Página: encabezado interior (nosotros / servicios / contacto)
+   ------------------------------------------------------------------------- */
+.page-header {
+  padding-block: var(--sp-5) var(--sp-4);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-header__eyebrow {
+  color: var(--color-accent-dark);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  margin-bottom: var(--sp-1);
+}
+
+/* -------------------------------------------------------------------------
+   15. Contacto
+   ------------------------------------------------------------------------- */
+.contact-grid {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+@media (min-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: var(--sp-6);
+  }
+}
+
+.contact-info__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-top: var(--sp-3);
+}
+
+.contact-info__item {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: flex-start;
+}
+
+.contact-info__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-accent-light);
+  color: var(--color-accent-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0; /* evita el hueco vertical que el navegador reserva bajo
+                     un svg inline, causa habitual de íconos que se ven
+                     descentrados dentro de su contenedor */
+}
+
+.contact-info__icon svg,
+.contact-info__icon img {
+  width: 18px;
+  height: 18px;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.contact-info__item h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+}
+
+.contact-info__item a,
+.contact-info__item span {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+}
+
+.contact-info__item a:hover {
+  color: var(--color-accent-dark);
+}
+
+.contact-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4);
+}
+
+.form-row {
+  display: grid;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-2);
+}
+
+@media (min-width: 560px) {
+  .form-row--2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-label {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+.form-label .req {
+  color: var(--color-accent-dark);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  padding: 0.7em 0.85em;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  font-size: 0.95rem;
+  transition: border-color 180ms var(--ease-out), background-color 180ms var(--ease-out);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--color-accent);
+  background: #fff;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-note {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: var(--sp-1);
+}
+
+.form-status {
+  margin-top: var(--sp-2);
+  padding: var(--sp-2);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  display: none;
+}
+
+.form-status.is-success {
+  display: block;
+  background: var(--color-accent-light);
+  color: var(--color-accent-dark);
+  border: 1px solid var(--color-accent);
+}
+
+.form-status.is-error {
+  display: block;
+  background: #fbe9e7;
+  color: #9a3412;
+  border: 1px solid #f3c8bd;
+}
+
+/* -------------------------------------------------------------------------
+   16. Pie de página
+   ------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--color-primary-dark);
+  color: rgba(255, 255, 255, 0.85);
+  padding-block: var(--sp-6) var(--sp-4);
+}
+
+.footer__grid {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .footer__grid {
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: var(--sp-5);
+  }
+}
+
+.footer__brand {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: flex-start;
+}
+
+.footer__brand img {
+  width: 34px;
+  height: 38px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.footer__brand-text strong {
+  display: block;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+}
+
+.footer__brand-text p {
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: var(--sp-1);
+}
+
+.footer__heading {
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: var(--sp-2);
+}
+
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.footer__list a,
+.footer__list span {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.footer__list a:hover {
+  color: #fff;
+}
+
+.footer__bottom {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-3);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+}
