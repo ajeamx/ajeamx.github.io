@@ -1324,16 +1324,18 @@ summary:focus-visible {
   align-items: flex-start;
 }
 
+/* Solo el ícono, sin círculo de fondo. Se mantiene una caja fija (sin
+   color) para que el ícono quede alineado con la primera línea del texto
+   de al lado, igual que antes. */
 .contact-info__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--color-accent-light);
+  width: 26px;
+  height: 26px;
   color: var(--color-accent-dark);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  margin-top: 0.15rem;
   line-height: 0; /* evita el hueco vertical que el navegador reserva bajo
                      un svg inline, causa habitual de íconos que se ven
                      descentrados dentro de su contenedor */
@@ -1341,8 +1343,8 @@ summary:focus-visible {
 
 .contact-info__icon svg,
 .contact-info__icon img {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   display: block;
   margin: 0 auto;
   object-fit: contain;
